@@ -1,0 +1,231 @@
+<mxfile host="65bd71144e">
+    <diagram name="X-University" id="0">
+        <mxGraphModel dx="2230" dy="2246" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="124" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=1;" parent="1" source="2" target="123" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="160" y="290"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="127" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="&lt;b&gt;Users&lt;/b&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry y="200" width="140" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="128" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;fontStyle=1" parent="1" source="3" target="121" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Frontend" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="200" y="200" width="140" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;div&gt;&lt;span style=&quot;text-align: start; caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-align: start; caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Request routing to appropriate microservices.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-align: start; caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-align: start; caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Authentication and authorization enforcement.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-align: start; caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-align: start; caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Rate limiting and throttling.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); text-align: start;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); text-align: start;&quot;&gt;SSL termination and request/response transformations.&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="390" y="129" width="140" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="134" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;rounded=0;strokeColor=#36393d;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=10;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=1;fillColor=#eeeeee;" edge="1" parent="1" source="5" target="131">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="750" y="40"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="Load Balancer" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="600" y="200" width="140" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;b&gt;User Service&lt;/b&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot; class=&quot;relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out&quot;&gt;Manages user profiles, preferences, and authentication data.&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="-236.25" width="140" height="79" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;b&gt;Assignment Service&lt;/b&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot; class=&quot;relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out&quot;&gt;Handles creation, retrieval, and management of assignments across subjects and levels.&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="-68" width="140" height="111" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Content Gen Service&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Integrates with LLMs (e.g., OpenAI GPT) to generate reading/writing materials.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Supports multiple languages and competency levels.&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="50" width="140" height="122" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Evaluation Service&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Processes student responses.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Utilizes AI to grade and provide feedback.&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="178" width="140" height="92" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Chatbot Service&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Facilitates real-time interactions between students and the teacher bot.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Employs WebSockets for bi-directional communication.&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="276" width="140" height="111" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Notification Service&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Sends emails, SMS, or push notifications for assignment updates, feedback, etc&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237));&quot;&gt;Utilizes message queues for reliable delivery.&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="392.5" width="140" height="111" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Analytics Service&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Tracks user engagement, performance metrics, and system usage.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: light-dark(rgb(0, 0, 0), rgb(237, 237, 237)); background-color: transparent;&quot;&gt;Provides insights for continuous improvement.&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="508" width="140" height="121" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;for relational data integrity and ACID compliance.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;Seperate schema for user and payment&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="1010" y="-200" width="140" height="95.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="MongoDB&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;for flexible schema and scalability&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="1010" y="76.5" width="140" height="69" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Redis&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot; class=&quot;relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot; class=&quot;relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out&quot;&gt;for in-memory storage and quick access&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="1010" y="250" width="140" height="59" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="InfluxDB&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot; class=&quot;relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out&quot;&gt;Time-series databases like&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="1010" y="566" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Kafka&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;To decouple the&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;strong style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot; data-end=&quot;100&quot; data-start=&quot;76&quot;&gt;Notification Service&lt;/strong&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp;&lt;/span&gt;from its consumers (like email, SMS), ensuring resilience, retry logic, and support for future scaling (e.g., audit logging, analytics)&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="1010" y="313" width="140" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Email" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="1200" y="348" width="140" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Grafana&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;frontend for monitoring metrics collected via&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;strong style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot; data-end=&quot;476&quot; data-start=&quot;462&quot;&gt;Prometheus&lt;/strong&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp;&lt;/span&gt;or another time-series DB. It helps visualize user engagement, error rates, LLM performance, etc.&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="1010" y="439" width="140" height="121" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="&lt;b&gt;Jenkins/GitHub&lt;/b&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot; class=&quot;relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out&quot;&gt;Implement pipelines using tools like Jenkins or GitHub Actions for automated testing and deployment.&lt;/span&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&amp;nbsp;&lt;/span&gt;​&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry y="-236.25" width="140" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="&lt;b&gt;Kubernetes Cluster&lt;/b&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;Use Kubernetes for automated deployment, scaling, and management&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="-236.25" width="140" height="106.25" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" style="endArrow=block;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" source="3" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="102" style="endArrow=block;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" source="4" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="5" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="750"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="104" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="5" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="740" y="220" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="750" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="105" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="5" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="750" y="150"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="106" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="5" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="107" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="5" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="760" y="300"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="108" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="5" target="11" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="760" y="350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="109" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="5" target="12" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="750" y="410"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="110" style="endArrow=classic;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="6" target="13" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="970" y="-160"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="111" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="7" target="14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="112" style="endArrow=classic;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="8" target="14" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="113" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="9" target="14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="140"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="114" style="endArrow=classic;html=1;fontSize=10;fontFamily=Helvetica;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="10" target="15" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="290"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="115" style="endArrow=classic;html=1;fontSize=10;fontFamily=Helvetica;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="11" target="17" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="970" y="390"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="116" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontFamily=Helvetica;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="17" target="18" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1200" y="392.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="117" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="12" target="16" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="990" y="570"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="118" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontColor=default;labelBackgroundColor=default;curved=1;" parent="1" source="12" target="19" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="980" y="550"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="119" style="endArrow=block;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" source="20" target="21" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="130" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#36393d;rounded=0;curved=1;fontSize=10;fontFamily=Helvetica;fillColor=#eeeeee;" parent="1" source="121" target="129" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="520" y="50"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="121" value="CDN" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="200" y="120" width="140" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="126" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" source="123" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="123" value="Identity Provider (Auth0/Keycloak)" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="200" y="280" width="140" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="129" value="Storage" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="600" y="38" width="140" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="132" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#36393d;fillColor=#eeeeee;rounded=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=10;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=1;" parent="1" source="131" target="13" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="-150"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="131" value="&lt;b&gt;Payment Service&lt;/b&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); text-align: start;&quot;&gt;&lt;font face=&quot;Helvetica&quot; style=&quot;&quot;&gt;PayPal, Stripe, Square&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=10;fontFamily=Helvetica;strokeColor=#36393d;fillColor=#eeeeee;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="-152" width="140" height="79" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
