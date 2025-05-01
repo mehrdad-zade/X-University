@@ -1,0 +1,40 @@
+# ⁂ Environment files ⁂
+.env
+.env.*            # any other variants
+
+# ⁂ Virtual environments ⁂
+venv/
+.venv/
+VENV/
+
+# ⁂ Python Bytecode ⁂
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ⁂ Test & Coverage ⁂
+.pytest_cache/
+.coverage*
+htmlcov/
+
+# ⁂ Migrations ⁂
+*.sqlite3
+
+# ⁂ Logs ⁂
+logs/
+*.log
+
+# ⁂ Docker ⁂
+docker-compose.override.yml
+
+# ⁂ IDEs & Editors ⁂
+.vscode/
+.idea/
+
+# ⁂ OS Files ⁂
+.DS_Store
+Thumbs.db
+
+# ⁂ Misc ⁂
+*.swp
+*~
