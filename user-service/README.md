@@ -159,8 +159,8 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_USER: xuniv_user
-      POSTGRES_PASSWORD: xuniv_pass
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pss
       POSTGRES_DB: xuniversity
     ports:
       - "5432:5432"

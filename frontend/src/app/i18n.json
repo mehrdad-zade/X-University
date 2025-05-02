@@ -1,0 +1,16 @@
+{
+  "en": {
+    "welcome": "Welcome to X‑University",
+    "login": "Login to Get Started",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "admin": "Admin Dashboard"
+  },
+  "es": {
+    "welcome": "Bienvenido a X‑University",
+    "login": "Iniciar sesión para comenzar",
+    "profile": "Perfil",
+    "dashboard": "Tablero",
+    "admin": "Panel de administración"
+  }
+}

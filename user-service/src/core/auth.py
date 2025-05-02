@@ -1,9 +1,11 @@
 from fastapi import Depends, HTTPException, Request
 from fastapi.security import HTTPBearer
 from jose import jwt, JWTError
-import os
+from src.core.settings import Settings
 
-SECRET_KEY = os.getenv("JWT_SECRET", "your-secret")
+# load secrets from config
+settings = Settings()
+SECRET_KEY = settings.jwt_secret
 ALGORITHM = "HS256"
 security = HTTPBearer()
 
@@ -17,3 +19,8 @@ def get_current_user(token=Depends(security)):
         }
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
+
+def get_current_admin(user: dict = Depends(get_current_user)):
+    if user.get("role") != "admin":
+        raise HTTPException(status_code=403, detail="Admin privileges required")
+    return user
