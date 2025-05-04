@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useAuth } from "@/lib/useAuth";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
+import { LOGIN_PATH } from "@/lib/useEndpoints";
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
@@ -13,17 +14,17 @@ type AdminUser = {
 };
 
 export default function AdminPage() {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { user: sessionUser, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (!isLoading) {
-      if (!isAuthenticated) router.push('/auth/login');
-      else if (user?.role !== 'admin') router.push('/dashboard');
+      if (!isAuthenticated) router.push(LOGIN_PATH);
+      else if (sessionUser?.role !== 'admin') router.push('/dashboard');
     }
-  }, [isLoading, isAuthenticated, user, router]);
+  }, [isLoading, isAuthenticated, sessionUser, router]);
 
-  const { data: users, error } = useSWR(() => isAuthenticated && user?.role === 'admin' ? '/api/users' : null, fetcher);
+  const { data: users, error } = useSWR(() => isAuthenticated && sessionUser?.role === 'admin' ? '/api/users' : null, fetcher);
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading users</p>;
 

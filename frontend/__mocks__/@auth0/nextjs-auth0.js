@@ -1,7 +1,1 @@
-module.exports = {
-  useUser: () => ({
-    user: null,
-    error: null,
-    isLoading: false,
-  }),
-};
+// This file is deprecated. Auth0 mock is no longer needed with Keycloak/next-auth integration.

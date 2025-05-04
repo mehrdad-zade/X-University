@@ -3,26 +3,27 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/useAuth";
 import { useRouter } from "next/navigation";
 import useSWR from 'swr';
+import { LOGIN_PATH } from "@/lib/useEndpoints";
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 export default function OnboardingPage() {
   const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
-  const { data: user, isLoading: userLoading } = useSWR(isAuthenticated ? '/api/users/me' : null, fetcher);
+  const { data: apiUser, isLoading: userLoading } = useSWR(isAuthenticated ? '/api/users/me' : null, fetcher);
   const [form, setForm] = useState({ language: "", age_group: "" });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      router.push("/auth/login");
+      router.push(LOGIN_PATH);
     }
     // Redirect if user already has metadata
-    if (!userLoading && user && user.language && user.age_group) {
+    if (!userLoading && apiUser && apiUser.language && apiUser.age_group) {
       router.replace('/dashboard');
     }
-  }, [isLoading, isAuthenticated, user, userLoading, router]);
+  }, [isLoading, isAuthenticated, apiUser, userLoading, router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });

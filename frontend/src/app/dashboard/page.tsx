@@ -2,14 +2,15 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/useAuth";
+import { LOGIN_PATH } from "@/lib/useEndpoints";
 
 export default function DashboardPage() {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { user: sessionUser, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      router.push('/auth/login');
+      router.push(LOGIN_PATH);
     }
   }, [isLoading, isAuthenticated, router]);
 
@@ -18,8 +19,8 @@ export default function DashboardPage() {
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p className="mt-4">Welcome, {user?.name} ({user?.email})!</p>
-      <p className="mt-2">Role: {user?.role || 'unknown'}</p>
+      <p className="mt-4">Welcome, {sessionUser?.name} ({sessionUser?.email})!</p>
+      <p className="mt-2">Role: {sessionUser?.role || 'unknown'}</p>
     </div>
   );
 }

@@ -4,31 +4,32 @@ import { useAuth } from "@/lib/useAuth";
 import { useRouter } from "next/navigation";
 import useSWR from 'swr';
 import Image from "next/image";
+import { LOGIN_PATH } from "@/lib/useEndpoints";
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 export default function ProfilePage() {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { user: isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
   const { data: swrUser, mutate } = useSWR(isAuthenticated ? '/api/users/me' : null, fetcher);
-  const [form, setForm] = useState({ display_name: user?.name || "", language: user?.language || "", age_group: user?.age_group || "" });
+  const [form, setForm] = useState({ display_name: '', language: '', age_group: '' });
   const [editing, setEditing] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      router.push('/auth/login');
+      router.push(LOGIN_PATH);
     }
   }, [isLoading, isAuthenticated, router]);
 
   useEffect(() => {
     setForm({
-      display_name: swrUser?.name || user?.name || "",
-      language: swrUser?.language || user?.language || "",
-      age_group: swrUser?.age_group || user?.age_group || ""
+      display_name: swrUser?.name || '',
+      language: swrUser?.language || '',
+      age_group: swrUser?.age_group || ''
     });
-  }, [swrUser, user]);
+  }, [swrUser]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -62,12 +63,12 @@ export default function ProfilePage() {
   };
 
   if (isLoading) return <p>Loading...</p>;
-  if (!user) return null;
+  if (!swrUser) return null;
 
   return (
     <div className="p-8 max-w-md mx-auto">
       <h1 className="text-2xl font-bold mb-4">Profile</h1>
-      <Image src={user.picture || "/default-avatar.png"} alt="Avatar" className="w-24 h-24 rounded-full mb-4" width={96} height={96} />
+      <Image src={swrUser.picture || "/default-avatar.png"} alt="Avatar" className="w-24 h-24 rounded-full mb-4" width={96} height={96} />
       {editing ? (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -127,11 +128,11 @@ export default function ProfilePage() {
         </form>
       ) : (
         <>
-          <p><strong>Name:</strong> {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Role:</strong> {user.role || 'N/A'}</p>
-          <p><strong>Language:</strong> {user.language || 'N/A'}</p>
-          <p><strong>Age Group:</strong> {user.age_group || 'N/A'}</p>
+          <p><strong>Name:</strong> {swrUser.name}</p>
+          <p><strong>Email:</strong> {swrUser.email}</p>
+          <p><strong>Role:</strong> {swrUser.role || 'N/A'}</p>
+          <p><strong>Language:</strong> {swrUser.language || 'N/A'}</p>
+          <p><strong>Age Group:</strong> {swrUser.age_group || 'N/A'}</p>
           <button
             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             onClick={() => setEditing(true)}

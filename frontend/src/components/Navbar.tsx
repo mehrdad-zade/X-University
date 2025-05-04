@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useAuth } from "@/lib/useAuth";
+import { LOGIN_PATH, LOGOUT_PATH } from "@/lib/useEndpoints";
+import LoginButton from "./LoginButton";
 
 export default function Navbar() {
   const { isAuthenticated, user } = useAuth();
@@ -16,9 +18,9 @@ export default function Navbar() {
           <span className="text-xs text-gray-500 border px-2 py-1 rounded bg-gray-100 ml-2">{user.role}</span>
         )}
         {isAuthenticated ? (
-          <Link href="/auth/logout" className="text-red-600">Logout</Link>
+          <Link href={LOGOUT_PATH} className="text-red-600">Logout</Link>
         ) : (
-          <Link href="/auth/login" className="text-green-600">Login</Link>
+          <LoginButton />
         )}
       </div>
     </nav>
