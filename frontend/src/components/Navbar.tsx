@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useAuth } from "@/lib/useAuth";
-import { LOGIN_PATH, LOGOUT_PATH } from "@/lib/useEndpoints";
+import { LOGOUT_PATH } from "../lib/useEndpoints";
 import LoginButton from "./LoginButton";
 
 export default function Navbar() {

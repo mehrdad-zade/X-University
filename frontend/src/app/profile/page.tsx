@@ -65,7 +65,6 @@ export default function ProfilePage() {
   };
 
   if (isLoading) return <p>Loading...</p>;
-  if (!swrUser) return null;
 
   return (
     <div className="p-8 max-w-md mx-auto">

@@ -1,9 +1,20 @@
 "use client";
 import LanguageSwitcher from "../LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+
+function useHasMounted() {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+  return hasMounted;
+}
 
 export default function AdminContent() {
   const { t } = useTranslation();
+  const hasMounted = useHasMounted();
+  if (!hasMounted) return null;
   return (
     <main className="p-8">
       <LanguageSwitcher />

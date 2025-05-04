@@ -1,7 +1,18 @@
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+
+function useHasMounted() {
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+  return hasMounted;
+}
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
+  const hasMounted = useHasMounted();
+  if (!hasMounted) return null;
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     if (typeof window !== 'undefined') {

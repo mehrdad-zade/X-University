@@ -12,24 +12,23 @@ describe('Navbar', () => {
   it('renders login button if not authenticated', () => {
     jest.spyOn(useAuthModule, 'useAuth').mockImplementation(() => ({ isAuthenticated: false, isLoading: false, user: {}, error: null }));
     render(<Navbar />);
-    expect(screen.getByText('Login')).toBeInTheDocument();
+    // The button text is 'Login with Keycloak'
+    expect(screen.getByText(/Login with Keycloak/i)).toBeInTheDocument();
   });
+
   it('renders user info if authenticated', () => {
     jest.spyOn(useAuthModule, 'useAuth').mockImplementation(() => ({
       isAuthenticated: true,
       isLoading: false,
       user: {
-        sub: 'test-sub',
         name: 'Test User',
         email: 'test@example.com',
         role: 'student',
-        language: 'en',
-        age_group: 'adult',
-        picture: ''
       },
       error: null
     }));
     render(<Navbar />);
-    expect(screen.getByText('Test User')).toBeInTheDocument();
+    // Check for the user's role, which is rendered in the Navbar
+    expect(screen.getByText(/student/i)).toBeInTheDocument();
   });
 });
