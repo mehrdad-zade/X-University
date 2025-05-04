@@ -3,10 +3,13 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/useAuth";
 import { LOGIN_PATH } from "@/lib/useEndpoints";
+import LanguageSwitcher from "../LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 export default function DashboardPage() {
   const { user: sessionUser, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -14,13 +17,14 @@ export default function DashboardPage() {
     }
   }, [isLoading, isAuthenticated, router]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p>{t('loading')}</p>;
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p className="mt-4">Welcome, {sessionUser?.name} ({sessionUser?.email})!</p>
-      <p className="mt-2">Role: {sessionUser?.role || 'unknown'}</p>
+      <LanguageSwitcher />
+      <h1 className="text-2xl font-bold">{t('dashboard')}</h1>
+      <p className="mt-4">{t('dashboardWelcome', { name: sessionUser?.name, email: sessionUser?.email })}</p>
+      <p className="mt-2">{t('roleLabel')}: {sessionUser?.role || t('unknown')}</p>
     </div>
   );
 }
