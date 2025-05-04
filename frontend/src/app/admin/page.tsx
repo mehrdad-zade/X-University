@@ -1,43 +1,16 @@
-"use client";
-import { useEffect } from "react";
-import { useAuth } from "@/lib/useAuth";
-import { useRouter } from "next/navigation";
-import useSWR from "swr";
-import { LOGIN_PATH } from "@/lib/useEndpoints";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../../pages/api/auth/[...nextauth]";
+import { redirect } from "next/navigation";
 
-const fetcher = (url: string) => fetch(url).then(res => res.json());
-
-type AdminUser = {
-  id: string;
-  email: string;
-  role: string;
-};
-
-export default function AdminPage() {
-  const { user: sessionUser, isAuthenticated, isLoading } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isLoading) {
-      if (!isAuthenticated) router.push(LOGIN_PATH);
-      else if (sessionUser?.role !== 'admin') router.push('/dashboard');
-    }
-  }, [isLoading, isAuthenticated, sessionUser, router]);
-
-  const { data: users, error } = useSWR(() => isAuthenticated && sessionUser?.role === 'admin' ? '/api/users' : null, fetcher);
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading users</p>;
-
+export default async function AdminPage() {
+  const session = await getServerSession(authOptions);
+  if (!session || session.user?.role !== "admin") {
+    redirect("/dashboard");
+  }
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
-      <ul className="space-y-2">
-        {users?.map((u: AdminUser) => (
-          <li key={u.id} className="border p-2 rounded">
-            {u.email} — {u.role}
-          </li>
-        )) || <p>No users found</p>}
-      </ul>
-    </div>
+    <main className="p-8">
+      <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
+      <p>Welcome, admin user! Here you can manage the application.</p>
+    </main>
   );
 }

@@ -1,26 +1,14 @@
-"use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/lib/useAuth";
-import LoginButton from "../components/LoginButton";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../pages/api/auth/[...nextauth]";
+import { redirect } from "next/navigation";
+import UnauthHome from "./UnauthHome";
 
-export default function Home() {
-  const { isAuthenticated, isLoading } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isLoading && isAuthenticated) {
-      router.replace('/dashboard');
-    }
-  }, [isLoading, isAuthenticated, router]);
-
-  if (isLoading) return <p>Loading...</p>;
-
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8">
-      <h1 className="text-3xl font-bold mb-4">Welcome to X‑University</h1>
-      <p className="mb-6">Learn, teach, and engage in modern education.</p>
-      <LoginButton />
-    </div>
-  );
+export default async function Home() {
+  const session = await getServerSession(authOptions);
+  if (session?.user?.role === "admin") {
+    redirect("/admin");
+  } else if (session?.user?.role === "student" || session?.user?.role === "teacher") {
+    redirect("/dashboard");
+  }
+  return <UnauthHome />;
 }
