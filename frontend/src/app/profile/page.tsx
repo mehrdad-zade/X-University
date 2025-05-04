@@ -11,7 +11,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 export default function ProfilePage() {
   const { t } = useTranslation();
-  const { user: isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
   const { data: swrUser, mutate } = useSWR(isAuthenticated ? '/api/users/me' : null, fetcher);
   const [form, setForm] = useState({ display_name: '', language: '', age_group: '' });
@@ -65,6 +65,9 @@ export default function ProfilePage() {
   };
 
   if (isLoading) return <p>Loading...</p>;
+  // Only show loading if authenticated but user data is loading
+  if (!isAuthenticated && !isLoading) return null;
+  if (isAuthenticated && !swrUser) return <div data-testid="profile-loading" />;
 
   return (
     <div className="p-8 max-w-md mx-auto">

@@ -84,3 +84,6 @@ echo "\nAll services started with HTTPS on https://localhost:3000 using mkcert s
 echo "If you see a browser warning, accept the certificate to proceed."
 echo "Keycloak is running at http://localhost:8080 (admin/admin)."
 echo "Update your .env.https and frontend OIDC config to use Keycloak."
+
+# Open Chrome in incognito mode and developer mode to the frontend URL
+open -na "Google Chrome" --args --incognito --auto-open-devtools-for-tabs --user-data-dir="/tmp/xuni-chrome-devtools" https://localhost:3000

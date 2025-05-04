@@ -52,15 +52,16 @@ describe('ProfilePage', () => {
     jest.spyOn(useAuthModule, 'useAuth').mockImplementation(() => ({ isAuthenticated: false, isLoading: false, user: {}, error: null }));
     const push = jest.fn();
     jest.spyOn(nextNavigation, 'useRouter').mockImplementation(() => ({ ...mockRouter, push }));
-    swrData = null;
+    swrData = null; // Set to null so the component doesn't render the profile page
     render(
       <I18nextProvider i18n={i18n}>
         <ProfilePage />
       </I18nextProvider>
     );
+    // Wait for the effect to run (flush microtasks)
     await waitFor(() => {
-      expect(push).toHaveBeenCalled();
-    });
+      expect(push).toHaveBeenCalledWith(LOGIN_PATH);
+    }, { timeout: 500 });
     // Debug output if test fails
     if (!push.mock.calls.length) {
       screen.debug();
