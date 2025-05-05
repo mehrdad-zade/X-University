@@ -1,11 +1,11 @@
 import { signIn } from "next-auth/react";
 
 const AUTH_PROVIDER = "keycloak";
-const LOGIN_BUTTON_LABEL = "Login with Keycloak";
+const LOGIN_BUTTON_LABEL = "Login";
 
 export default function LoginButton() {
   const handleLogin = () => {
-    signIn(AUTH_PROVIDER);
+    signIn(AUTH_PROVIDER, { callbackUrl: "/dashboard" });
   };
   return (
     <button
