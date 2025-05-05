@@ -3,7 +3,10 @@ import time
 import pytest
 from fastapi.testclient import TestClient
 from jose import jwt
+from dotenv import load_dotenv  # <-- add this
 from src.main import app
+
+load_dotenv()  # <-- load .env at the start
 
 client = TestClient(app)
 
