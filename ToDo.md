@@ -1,8 +1,8 @@
 Here’s a high-level gap analysis against the Sprint 1 requirements and a prioritized TODO list for both packages.
 
 Authentication & Authorization
-• Social logins (Google/Apple) are not yet wired into NextAuth.
-• Frontend route protection (server-side and client-side) is missing (e.g. no getServerSideProps guards or App-Router middleware).
+• √ Social logins (Google/Apple) are not yet wired into NextAuth.
+• √ Frontend route protection (server-side and client-side) is missing (e.g. no getServerSideProps guards or App-Router middleware).
 • No explicit RBAC gating in the UI (e.g. “/admin” page or admin-only menu items).
 • We rely on NextAuth’s JWT in-memory storage; consider HttpOnly cookies for API calls.
 

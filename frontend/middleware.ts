@@ -4,7 +4,7 @@ import { LOGIN_PATH } from "@/lib/useEndpoints";
 
 export async function middleware(request: NextRequest) {
   // Only protect these paths
-  const protectedPaths = ["/dashboard", "/profile", "/onboarding"];
+  const protectedPaths = ["/dashboard", "/profile", "/onboarding", "/admin"];
   const { pathname } = request.nextUrl;
   const isProtected = protectedPaths.some((path) => pathname.startsWith(path));
 
@@ -27,5 +27,10 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/profile/:path*", "/onboarding/:path*"]
+  matcher: [
+    "/dashboard/:path*",
+    "/profile/:path*",
+    "/onboarding/:path*",
+    "/admin/:path*",
+  ],
 };

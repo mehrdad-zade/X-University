@@ -16,9 +16,11 @@ export default function Navbar() {
       <div className="space-x-4 flex items-center">
         <Link href="/dashboard" className="hover:text-blue-500">Dashboard</Link>
         <Link href="/profile" className="hover:text-blue-500">Profile</Link>
-        {isAuthenticated && (
+        {/* Only show Admin link if user is authenticated and has admin role */}
+        {isAuthenticated && user?.role === "admin" && (
           <Link href="/admin" className="hover:text-blue-500">Admin</Link>
         )}
+        {/* Show user role if available */}
         {isAuthenticated && user?.role && (
           <span className="text-xs text-gray-500 border px-2 py-1 rounded bg-gray-100 ml-2">{user.role}</span>
         )}
