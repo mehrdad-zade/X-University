@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, constr
 from typing import Optional
 from enum import Enum
 
@@ -17,8 +17,8 @@ class UserOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 class UserUpdate(BaseModel):
-    language: Optional[str] = None
-    age_group: Optional[str] = None
+    language: Optional[constr(min_length=2, max_length=8, regex=r'^[a-zA-Z-]+$')] = None  # e.g. 'en', 'en-US'
+    age_group: Optional[constr(min_length=2, max_length=16, regex=r'^[a-zA-Z0-9_-]+$')] = None  # e.g. 'adult', '18-25'
 
 class RoleUpdate(BaseModel):
     role: Role
