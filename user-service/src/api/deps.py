@@ -4,7 +4,7 @@ from fastapi import Depends
 from src.db.base import get_db
 from src.db.repositories import UserRepository
 from src.services.user_service import UserService
-from src.core.settings import Settings
+from core.settings import Settings
 from src.core.auth import get_current_user as _get_current_user
 from src.core.auth import get_current_admin as _get_current_admin
 

@@ -1,7 +1,7 @@
 from fastapi import Depends, HTTPException, Request
 from fastapi.security import HTTPBearer
 from jose import jwt, JWTError
-from src.core.settings import Settings
+from core.settings import Settings
 
 # load secrets from config
 settings = Settings()

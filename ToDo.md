@@ -3,11 +3,11 @@ Here’s a high-level gap analysis against the Sprint 1 requirements and a prior
 Authentication & Authorization
 • √ Social logins (Google/Apple) are not yet wired into NextAuth.
 • √ Frontend route protection (server-side and client-side) is missing (e.g. no getServerSideProps guards or App-Router middleware).
-• No explicit RBAC gating in the UI (e.g. “/admin” page or admin-only menu items).
-• We rely on NextAuth’s JWT in-memory storage; consider HttpOnly cookies for API calls.
+• √ No explicit RBAC gating in the UI (e.g. “/admin” page or admin-only menu items).
+• √ We rely on NextAuth’s JWT in-memory storage; consider HttpOnly cookies for API calls.
 
 User Service (FastAPI)
-• Migrations: verify that Alembic versions define the users table with the required constraints and indexes (email, role, language).
+• √ Migrations: verify that Alembic versions define the users table with the required constraints and indexes (email, role, language).
 • Schemas/validation: confirm all input models (UserUpdate, RoleUpdate) have field validation (length, formats).
 • AuditLogRepository: review implementation to ensure every CRUD event is logged.
 • Middleware for JWT validation: verify get_current_user/get_current_admin actually decodes and validates tokens against Keycloak (JWKS).

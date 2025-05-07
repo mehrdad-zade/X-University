@@ -1,9 +1,11 @@
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from alembic import context
-import os, sys
-sys.path.append(os.path.abspath('src'))
-from src.db.base import Base, engine
+from db.base import Base, engine
+from db import models 
+
 config = context.config
 fileConfig(config.config_file_name)
 target_metadata = Base.metadata
