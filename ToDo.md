@@ -10,7 +10,7 @@ User Service (FastAPI)
 • √ Migrations: verify that Alembic versions define the users table with the required constraints and indexes (email, role, language).
 • √ Schemas/validation: confirm all input models (UserUpdate, RoleUpdate) have field validation (length, formats).
 • √ AuditLogRepository: review implementation to ensure every CRUD event is logged.
-• Middleware for JWT validation: verify get_current_user/get_current_admin actually decodes and validates tokens against Keycloak (JWKS).
+• √ Middleware for JWT validation: verify get_current_user/get_current_admin actually decodes and validates tokens against Keycloak (JWKS).
 • Swagger/OpenAPI: generate and publish docs (e.g. via FastAPI’s docs endpoint).
 • Add paginated “list users” endpoint for admin (optional but common).
 
