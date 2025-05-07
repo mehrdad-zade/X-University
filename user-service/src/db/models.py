@@ -1,6 +1,6 @@
 """SQLAlchemy models"""
 from sqlalchemy import Column, String, Enum, DateTime, func, Index
-from db.base import Base
+from src.db.base import Base
 import enum
 
 class UserRole(str, enum.Enum):
@@ -16,12 +16,6 @@ class User(Base):
     language = Column(String, nullable=True, index=True)
     name = Column(String, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
-
-    __table_args__ = (
-        Index('ix_users_email', 'email'),
-        Index('ix_users_role', 'role'),
-        Index('ix_users_language', 'language'),
-    )
 
 class AuditLog(Base):
     __tablename__ = "audit_log"

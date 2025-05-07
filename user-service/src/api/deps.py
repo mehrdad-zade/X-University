@@ -18,6 +18,7 @@ def get_user_service(repo=Depends(get_user_repository), settings=Depends(get_set
     return UserService(repo, settings)
 
 def get_current_user(credentials=Depends(_get_current_user)):
+    print("[DEBUG] src.api.deps.get_current_user called")
     return credentials
 
 def get_current_admin(credentials=Depends(_get_current_admin)):

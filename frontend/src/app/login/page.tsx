@@ -1,12 +1,10 @@
 "use client";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { LOGIN_PATH } from "@/lib/useEndpoints";
+import { signIn } from "next-auth/react";
 
-export default function LoginPage() {
-  const router = useRouter();
+export default function LoginRedirect() {
   useEffect(() => {
-    router.replace(LOGIN_PATH);
-  }, [router]);
-  return <p>Redirecting to login...</p>;
+    signIn(); // Redirects to NextAuth sign-in page
+  }, []);
+  return null;
 }

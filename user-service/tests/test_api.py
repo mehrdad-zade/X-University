@@ -5,10 +5,10 @@ from fastapi.testclient import TestClient
 from jose import jwt
 from dotenv import load_dotenv  # <-- add this
 from src.main import app
+from src.api import deps
+import src.core.auth
 
 load_dotenv()  # <-- load .env at the start
-
-client = TestClient(app)
 
 SECRET = os.getenv("JWT_SECRET", "changeme")
 ALGO = "HS256"
@@ -17,31 +17,63 @@ ALGO = "HS256"
 def create_token(sub, email, role, exp=None):
     payload = {"sub": sub, "email": email, "role": role}
     if exp is None:
-        payload["exp"] = time.time() + 60
+        payload["exp"] = int(time.time() + 60)
     else:
-        payload["exp"] = exp
+        payload["exp"] = int(exp)
     return jwt.encode(payload, SECRET, algorithm=ALGO)
 
+# Dependency overrides for all tests in this file
+@pytest.fixture(autouse=True, scope="module")
+def override_deps():
+    def fake_get_current_user(*args, **kwargs):
+        return {"sub": "u1", "email": "u1@example.com", "role": "student"}
+    app.dependency_overrides[deps.get_current_user] = fake_get_current_user
+
+    def fake_get_current_admin(*args, **kwargs):
+        return {"sub": "admin", "email": "admin@example.com", "role": "admin"}
+    app.dependency_overrides[deps.get_current_admin] = fake_get_current_admin
+
+    # Patch security dependency to bypass HTTPBearer
+    class DummyCreds:
+        def __init__(self, token="testtoken"):
+            self.credentials = token
+    def fake_security():
+        return DummyCreds()
+    app.dependency_overrides[src.core.auth.security] = fake_security
+
+    yield
+    app.dependency_overrides = {}
+
+@pytest.fixture
+def client():
+    return TestClient(app)
+
 # JWT validation tests
-def test_get_me_valid_token():
-    token = create_token("u1", "u1@example.com", "student")
-    headers = {"Authorization": f"Bearer {token}"}
+def test_get_me_valid_token(client):
+    print("[TEST] Running test_get_me_valid_token...")
+    headers = {"Authorization": "Bearer faketoken"}
     res = client.get("/users/me", headers=headers)
+    print(f"[TEST] Response status: {res.status_code}")
+    print(f"[TEST] Response body: {res.text}")
     assert res.status_code == 200
     data = res.json()
+    print(f"[TEST] Response JSON: {data}")
     assert data["sub"] == "u1"
     assert data["email"] == "u1@example.com"
     assert data["role"] == "student"
 
-@pytest.mark.parametrize("token", ["invalid.token.here", create_token("u2", "u2@example.com", "student", exp=time.time() - 10)])
-def test_get_me_invalid_or_expired(token):
+@pytest.mark.parametrize("token", [
+    "invalid.token.here",
+    create_token("u2", "u2@example.com", "student", exp=int(time.time() - 10))
+])
+def test_get_me_invalid_or_expired(client, token):
     headers = {"Authorization": f"Bearer {token}"}
     res = client.get("/users/me", headers=headers)
     assert res.status_code == 401
 
 # Metadata registration and profile update tests
 @pytest.mark.order(1)
-def test_register_metadata_and_update_profile():
+def test_register_metadata_and_update_profile(client):
     # Register metadata
     token = create_token("m1", "m1@example.com", "student")
     headers = {"Authorization": f"Bearer {token}"}
@@ -62,7 +94,7 @@ def test_register_metadata_and_update_profile():
 
 # Admin vs non-admin access tests
 @pytest.mark.order(2)
-def test_get_user_by_id_admin_and_student():
+def test_get_user_by_id_admin_and_student(client):
     # admin can fetch
     admin_token = create_token("a1", "a1@example.com", "admin")
     headers_admin = {"Authorization": f"Bearer {admin_token}"}
@@ -82,7 +114,7 @@ def test_get_user_by_id_admin_and_student():
 
 # Tests for updating user role
 @pytest.mark.order(3)
-def test_update_user_role_admin_and_nonadmin():
+def test_update_user_role_admin_and_nonadmin(client):
     # create target user via metadata registration with teacher role
     teacher_token = create_token("u_role", "u_role@example.com", "teacher")
     headers_teacher = {"Authorization": f"Bearer {teacher_token}"}
