@@ -6,7 +6,6 @@ import os, sys
 sys.path.append(os.path.abspath('src'))
 from src.main import app
 from src.db.base import Base, get_db
-import src.core.auth
 import tempfile
 from pathlib import Path
 import uuid
@@ -15,17 +14,11 @@ import uuid
 def engine():
     db_file = Path(tempfile.gettempdir()) / f"xuniversity_test_{uuid.uuid4().hex}.db"
     if db_file.exists():
-        print("[DEBUG] Removing old test DB file:", db_file)
         db_file.unlink()
-    print("[DEBUG] Test DB file:", db_file)
     eng = create_engine(f'sqlite:///{db_file}', connect_args={'check_same_thread': False})
-    # Explicitly import all models to ensure table creation
-    from src.db.models import User, AuditLog  # Add all models you need
+    # import all models so create_all picks them up
+    from src.db.models import User, AuditLog
     Base.metadata.create_all(eng)
-    # Print tables after creation
-    with eng.connect() as conn:
-        tables = conn.execute(text("SELECT name FROM sqlite_master WHERE type='table';")).fetchall()
-        print("[DEBUG] Tables in test DB after create_all:", tables)
     return eng
 
 @pytest.fixture(scope='session')
@@ -42,53 +35,59 @@ def db_session(SessionLocal):
 @pytest.fixture(autouse=True)
 def override_get_db(db_session):
     def _get_db():
-        print("[DEBUG] override_get_db yields db_session:", db_session)
-        try:
-            yield db_session
-        finally:
-            pass
+        yield db_session
     app.dependency_overrides[get_db] = _get_db
 
 @pytest.fixture(autouse=True)
 def override_auth():
     from fastapi import Request, HTTPException
+    from jose import jwt, JWTError
+    import time
+
     def fake_get_current_user(request: Request):
-        print("[DEBUG] fake_get_current_user called")
-        token = None
-        auth = request.headers.get("authorization")
-        print(f"[DEBUG] Authorization header: {auth}")
-        if auth and auth.startswith("Bearer "):
-            token = auth.split(" ", 1)[1]
-        print(f"[DEBUG] Token: {token}")
-        # Simulate 401 for known-bad or expired tokens
+        auth_header = request.headers.get("authorization")
+        if not auth_header:
+            raise HTTPException(status_code=403, detail="Not authenticated")
+
+        if not auth_header.startswith("Bearer "):
+            raise HTTPException(status_code=401, detail="Invalid token format")
+
+        token = auth_header.split(" ", 1)[1]
+
+        # explicit 401 case
         if token == "invalid.token.here":
-            print("[DEBUG] Invalid token detected")
             raise HTTPException(status_code=401, detail="Invalid token")
-        from jose import jwt
-        import time
+
         try:
-            payload = jwt.get_unverified_claims(token)
-            print(f"[DEBUG] Decoded payload: {payload}")
-            exp = payload.get("exp")
-            print(f"[DEBUG] Token exp: {exp}, now: {time.time()}")
+            claims = jwt.get_unverified_claims(token)
+            exp = claims.get("exp")
             if exp is not None and float(exp) < time.time():
-                print("[DEBUG] Token expired")
                 raise HTTPException(status_code=401, detail="Token expired")
+            # return the actual claims so role="admin" sticks through
+            return {
+                "sub": claims["sub"],
+                "email": claims["email"],
+                "role": claims["role"],
+                **({} if "exp" not in claims else {"exp": claims["exp"]})
+            }
         except HTTPException:
-            print("[DEBUG] HTTPException raised, propagating...")
+            # propagate our own 401/403
             raise
-        except Exception as e:
-            print(f"[DEBUG] Exception decoding token: {e}")
-            pass
-        print("[DEBUG] Returning fake user")
-        return {"sub": "u1", "email": "u1@example.com", "role": "student"}
-    app.dependency_overrides[src.core.auth.get_current_user] = fake_get_current_user
+        except JWTError:
+            # any parse error: fall back to a harmless dummy student
+            return {"sub": "u1", "email": "u1@example.com", "role": "student"}
 
     def fake_get_current_admin(request: Request):
+        # for admin‐only endpoints we'll just bypass the JWT and say it's admin
         return {"sub": "admin", "email": "admin@example.com", "role": "admin"}
+
+    import src.core.auth
+    app.dependency_overrides[src.core.auth.get_current_user] = fake_get_current_user
     app.dependency_overrides[src.core.auth.get_current_admin] = fake_get_current_admin
+
     yield
-    app.dependency_overrides = {}
+
+    app.dependency_overrides.clear()
 
 @pytest.fixture
 def client():

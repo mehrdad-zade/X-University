@@ -1,21 +1,16 @@
+version: '3.8'
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:24.0.3
-    command: start-dev
+    image: quay.io/keycloak/keycloak:latest
+    entrypoint: ["/opt/keycloak/bin/keycloak-entrypoint.sh"]
+    user: root               # so we can install jq at startup
     environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    ports:
-      - "8080:8080"
-
-  db:
-    image: postgres:15
-    env_file:
-      - ./user-service/.env
-    ports:
-      - "5432:5432"
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_BOOTSTRAP_IMPORT: /opt/keycloak/data/import/x-university.json
     volumes:
-      - db_data:/var/lib/postgresql/data
-
-volumes:
-  db_data:
+      - ./data/import:/opt/keycloak/data/import:ro
+      - ./scripts/setup-keycloak.sh:/opt/keycloak/bin/setup-keycloak.sh:ro
+      - ./scripts/keycloak-entrypoint.sh:/opt/keycloak/bin/keycloak-entrypoint.sh:ro
+    ports:
+      - 8080:8080

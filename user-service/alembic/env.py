@@ -1,10 +1,12 @@
 import os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+# Debug statement to confirm sys.path includes 'src'
+print("[DEBUG] sys.path:", sys.path)
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from alembic import context
 from db.base import Base, engine
-from db import models 
+from db import models
 
 config = context.config
 fileConfig(config.config_file_name)

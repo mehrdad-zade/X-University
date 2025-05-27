@@ -142,6 +142,16 @@ uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
 ## 🧪 Testing
 
 - Ensure `src/` has `__init__.py` and `pytest.ini`/`conftest.py` exist.
+- **Make sure the PostgreSQL database is running before running tests.**
+  - If you see errors about failing to connect to the database, start it with:
+    ```bash
+    docker compose up -d db
+    ```
+  - If you still get connection errors, check that your `.env` and `DATABASE_URL` are correct and that the container is healthy:
+    ```bash
+    docker compose ps
+    docker compose logs db
+    ```
 - Run:
   ```bash
   pytest --disable-warnings --maxfail=1
@@ -159,15 +169,40 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_USER: usr
-      POSTGRES_PASSWORD: pss
-      POSTGRES_DB: xuniversity
+      - POSTGRES_USER=xuniv_user
+      - POSTGRES_PASSWORD=xuniv_pass
+      - POSTGRES_DB=xuniversity
     ports:
       - "5432:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - pgcomposevol:/var/lib/postgresql/data
 volumes:
-  db_data:
+  pgcomposevol:
+```
+
+**Troubleshooting:**  
+- If you see `role "xuniv_user" does not exist`, the Docker volume may be stale, or Compose may not be parsing environment variables correctly.
+- Always run:
+  ```bash
+  docker compose down -v
+  docker volume prune -f
+  docker compose up -d db
+  docker compose logs db
+  docker compose exec db \
+  psql -U xuniv_user -d xuniversity -c "\l"
+  ```
+- If you see output listing the `xuniversity` database and `xuniv_user` as owner, your setup is correct and ready for tests.
+- **If the problem persists, use the list syntax for environment variables as shown above.**
+- If you still have issues, try running the container manually (see below) to verify your Docker setup.
+
+```bash
+# keycloak
+chmod +x scripts/keycloak-entrypoint.sh
+docker compose stop keycloak
+docker compose rm -f keycloak
+docker volume prune --filter label=com.docker.compose.service=keycloak --force
+docker compose up -d keycloak
+docker compose logs -f keycloak
 ```
 
 ---
@@ -183,6 +218,95 @@ volumes:
 ## 📬 Contribution
 
 Please follow code style, add tests, and open PRs against `main`.
+
+---
+
+# Running Postgres for Local Development with Docker
+
+To run a local Postgres database for the user-service, you have two options:
+
+## Option 1: Using Docker Compose (Recommended)
+
+1. **Ensure Docker Desktop is running.**
+
+2. **Start the database with Docker Compose:**
+
+   ```bash
+   docker compose up -d db
+   ```
+
+   This will start a Postgres 16 container with:
+   - Database: `xuniversity`
+   - User: `xuniv_user`
+   - Password: `xuniv_pass`
+   - Port: 5432 (localhost)
+
+3. **Connect to the database:**
+
+   - As the app user:
+     ```bash
+     psql -h localhost -U xuniv_user -d xuniversity -p 5432
+     # Password: xuniv_pass
+     ```
+   - As the superuser:
+     ```bash
+     psql -h localhost -U postgres -p 5432
+     # Password: xuniv_pass
+     ```
+
+4. **Reset the database (if needed):**
+   If you need a fresh database (e.g., to fix initialization issues), run:
+   ```bash
+   docker compose down -v
+   docker volume prune -f
+   docker compose up -d db
+   ```
+
+5. **Troubleshooting:**
+   - Make sure there is no local directory named `db_data2` in your project root.
+   - The Docker Compose file uses a Docker-managed volume (`db_data2`).
+   - If you change environment variables, always remove the volume and restart.
+
+6. **Environment variables are set in `docker-compose.yml` for the `db` service:**
+   ```yaml
+   environment:
+     - POSTGRES_USER=xuniv_user
+     - POSTGRES_PASSWORD=xuniv_pass
+     - POSTGRES_DB=xuniversity
+   ```
+
+---
+
+## Option 2: Manual Docker Run (if Compose does not work)
+
+If you encounter issues with Docker Compose, you can manually start Postgres with:
+
+```bash
+docker volume create pgtestdata3
+docker run --rm \
+  -e POSTGRES_USER=xuniv_user \
+  -e POSTGRES_PASSWORD=xuniv_pass \
+  -e POSTGRES_DB=xuniversity \
+  -v pgtestdata3:/var/lib/postgresql/data \
+  -p 55432:5432 \
+  postgres:16
+```
+
+- This will start Postgres on port 55432.
+- Connect with:
+  ```bash
+  psql -h localhost -U xuniv_user -d xuniversity -p 55432
+  # Password: xuniv_pass
+  ```
+
+- If you need to reset, remove the volume:
+  ```bash
+  docker volume rm pgtestdata3
+  ```
+
+---
+
+For more details, see the official [Postgres Docker image documentation](https://hub.docker.com/_/postgres).
 
 ---
 

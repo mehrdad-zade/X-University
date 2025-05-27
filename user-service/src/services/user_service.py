@@ -9,9 +9,12 @@ class UserService:
         self.audit_repo = AuditLogRepository(repo.db)
 
     def fetch_user(self, user_id: str, current_user: dict = None):
-        user = self.repo.get_by_id(user_id)
+        # first: disallow anybody except self or an admin
         if current_user and current_user["sub"] != user_id and current_user["role"] != "admin":
             raise PermissionDeniedError()
+        # now look up the user (404 if not found)
+        self.audit_repo.log(current_user["sub"], f"fetched user {user_id}")
+        user = self.repo.get_by_id(user_id)
         self.audit_repo.log(current_user["sub"], f"fetched user {user_id}")
         return user
 
@@ -24,7 +27,11 @@ class UserService:
 
     def update_profile(self, user_id: str, metadata: UserUpdate):
         user = self.repo.get_by_id(user_id)
-        updated = self.repo.update(user, **metadata.model_dump(exclude_unset=True))
+        # Exclude fields with None values
+        update_data = {k: v for k, v in metadata.model_dump(exclude_unset=True).items() if v is not None}
+        # Debug log to verify update_data
+        print(f"[DEBUG] update_data before update: {update_data}")
+        updated = self.repo.update(user, **update_data)
         self.audit_repo.log(user_id, "updated profile")
         return updated
 

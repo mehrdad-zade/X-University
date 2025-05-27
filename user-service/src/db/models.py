@@ -15,6 +15,7 @@ class User(Base):
     role = Column(Enum(UserRole), nullable=False, index=True)
     language = Column(String, nullable=True, index=True)
     name = Column(String, nullable=True)
+    age_group = Column(String, nullable=True, index=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 class AuditLog(Base):

@@ -43,9 +43,9 @@ def update_profile(
 def get_user_by_id(
     user_id: str,
     service: UserService = Depends(get_user_service),
-    admin: dict = Depends(get_current_admin)
+    current_user: dict = Depends(get_current_user)
 ):
-    result = service.fetch_user(user_id, admin)
+    result = service.fetch_user(user_id, current_user)
     return to_userout(result)
 
 @router.put("/users/{user_id}/role", response_model=UserOut)
@@ -53,7 +53,7 @@ def update_user_role(
     user_id: str,
     role_update: RoleUpdate,
     service: UserService = Depends(get_user_service),
-    admin: dict = Depends(get_current_admin)
+    current_user: dict = Depends(get_current_user)
 ):
-    result = service.update_role(admin, user_id, role_update.role.value)
+    result = service.update_role(current_user, user_id, role_update.role.value)
     return to_userout(result)
